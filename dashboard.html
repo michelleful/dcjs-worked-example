@@ -10,6 +10,48 @@
 
 <link href='https://cdnjs.cloudflare.com/ajax/libs/dc/1.7.5/dc.min.css' rel='stylesheet' type='text/css'>
 
+<script type='text/javascript'>
+// load the data in from the CSV with d3
+d3.csv('ndx.csv', function (data) {
+    // all the data is now in the variable `data` for us to play with
+
+    // if you inspect the csv, these are the columns and their types:
+    //   date (mm/dd/yyyy), open (float), close(float), low (float),
+    //   close (float), volume (int), oi (int)
+
+    // d3.csv converts it into a list of objects of the form:
+    // Object
+    //    close: "116.28"
+    //    date: "11/01/1985"
+    //    high: "116.78"
+    //    low: "115.48"
+    //    oi: "0"
+    //    open: "115.48"
+    //    volume: "900900"
+    // Note that it got the headings right but everything is a string
+    // This would not happen if it were in JSON format, generally
+
+    // But this means we should coerce the data into the right format, as below:
+
+    var dateFormat = d3.time.format('%m/%d/%Y');
+
+    data.forEach(function (d) {
+        d.dd = dateFormat.parse(d.date);
+        d.close = +d.close; // coerce to number
+        d.open = +d.open;
+        d.change = +d.change;
+        d.volume = +d.volume
+    });
+
+    // now we load it into CrossFilter so we can do manipulations
+    // with the data
+    var ndx = crossfilter(data);
+    var all = ndx.groupAll();
+
+});
+</script>
+
+
 </head>
 
 <body>

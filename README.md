@@ -20,3 +20,4 @@ Then in your browser go to `localhost:8000/dashboard.html` (replace the port or 
 ## Steps
 
 1. create an HTML skeleton and pull in the required libraries from a CDN.
+2. download data, load the CSV with d3, coerce strings to the right formats, then load it into CrossFilter
