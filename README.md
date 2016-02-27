@@ -1,2 +1,22 @@
-# dcjs-worked-example
+# A worked example with dc.js
 Rebuilding the dc.js Nasdaq example step-by-step
+
+The Nasdaq dashboard can be seen here:
+* [https://dc-js.github.io/dc.js/](https://dc-js.github.io/dc.js/)
+
+The annotated code is here:
+* [https://dc-js.github.io/dc.js/docs/stock.html](https://dc-js.github.io/dc.js/docs/stock.html)
+
+In this repo, I'm going to add things step by step so that I understand what's going on in greater detail. Most code will go in `dashboard.html`.
+
+To run the example and see all the graphs, set up a local server with either:
+* `python -m SimpleHTTPServer`
+* `python3 -m http.server`
+* Any server of your choice
+
+Then in your browser go to `localhost:8000/dashboard.html` (replace the port or URL as required by your server set-up).
+
+
+## Steps
+
+1. create an HTML skeleton and pull in the required libraries from a CDN.
