@@ -21,3 +21,4 @@ Then in your browser go to `localhost:8000/dashboard.html` (replace the port or 
 
 1. create an HTML skeleton and pull in the required libraries from a CDN.
 2. download data, load the CSV with d3, coerce strings to the right formats, then load it into CrossFilter
+3. Create a simple datatable that displays all the data in rows
