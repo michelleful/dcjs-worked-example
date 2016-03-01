@@ -19,7 +19,11 @@ Then in your browser go to `localhost:8000/dashboard.html` (replace the port or 
 
 ## Steps
 
+### Set-up
 1. create an HTML skeleton and pull in the required libraries from a CDN.
 2. download data, load the CSV with d3, coerce strings to the right formats, then load it into CrossFilter
+
+### DataTable
 3. Create a simple datatable that displays all the data in rows
 4. Add in bootstrap and make the table look nice
+5. Add in pagination for the table
