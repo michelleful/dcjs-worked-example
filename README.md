@@ -30,3 +30,4 @@ Then in your browser go to `localhost:8000/dashboard.html` (replace the port or 
 
 ### Piecharts
 6. Create very basic pie chart and add a little bit of Bootstrap. Note that filtering on the pie chart already filters the table! (Although the row counts don't change - something to fix.)
+7. Add some optional features to the pie chart like a custom label

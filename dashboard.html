@@ -176,6 +176,7 @@ d3.csv('ndx.csv', function (data) {
 
     // load the data into CrossFilter
     ndx = crossfilter(data);
+    var all = ndx.groupAll();
 
     // Create a data dimension
     var dateDimension = ndx.dimension(function (d) {
@@ -193,7 +194,18 @@ d3.csv('ndx.csv', function (data) {
       .height(180)
       .radius(80)
       .dimension(gainOrLoss)
-      .group(gainOrLossGroup)
+      .group(gainOrLossGroup) // all below are optional
+      .label(function (d) {
+        if (gainOrLossChart.hasFilter() && !gainOrLossChart.hasFilter(d.key)) {
+            return d.key + '(0%)';
+        }
+        var label = d.key;
+        if (all.value()) { // add in the percentage
+            label += '(' + Math.floor(d.value / all.value() * 100) + '%)';
+        }
+        return label;
+      })
+      .transitionDuration(500) // changes transition duration (default: 350 ms)
 
     // create the dataTable
     nasdaqTable
