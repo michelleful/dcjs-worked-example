@@ -21,6 +21,17 @@
 
 <body>
 
+<div class="container">
+
+<!-- new! first pie chart -->
+<div class="row">
+  <div id="gain-loss-chart">
+    <strong>Days by Gain/Loss</strong>
+    <div class="clearfix"></div>
+  </div>
+</div>
+
+<div class="row">
 <!-- create navigation buttons with bootstrap styles -->
 <nav>
   <ul class="pager">
@@ -52,11 +63,15 @@
 </nav>
 <!-- create a table to host the dataTable -->
 <table class="dc-data-table table table-hover"></table>
+</div> <!-- end row containing datatable -->
+
+</div> <!-- end container -->
 
 <script type='text/javascript'>
 var ndx; // this will be our CrossFilter variable
 
-// this is the variable that holds the data table
+// this is the variable that holds the first pie chart (new!)
+var gainOrLossChart = dc.pieChart('#gain-loss-chart');
 var nasdaqTable = dc.dataTable('.dc-data-table');
 
 // pagination controls for nasdaqTable
@@ -166,6 +181,19 @@ d3.csv('ndx.csv', function (data) {
     var dateDimension = ndx.dimension(function (d) {
         return d.dd;
     });
+    // Create a categorical data dimension for gain/loss
+    var gainOrLoss = ndx.dimension(function (d) {
+        return d.open > d.close ? 'Loss' : 'Gain';
+    });
+    var gainOrLossGroup = gainOrLoss.group();
+
+    // create the gainOrLoss pie chart
+    gainOrLossChart
+      .width(180)
+      .height(180)
+      .radius(80)
+      .dimension(gainOrLoss)
+      .group(gainOrLossGroup)
 
     // create the dataTable
     nasdaqTable
